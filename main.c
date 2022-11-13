@@ -86,7 +86,7 @@ void PlayerMove()
             board[x][y] = PLAYER;
             break;
         }
-    } while (/* condition */);
+    } while (board[x][y] != ' ');
 
 }
 void ComputerMove()
