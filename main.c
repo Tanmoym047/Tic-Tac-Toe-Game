@@ -40,6 +40,8 @@ int main()
         }
 
     }
+    PrintBoard();
+    PrintWinner(winner);
 
     return 0;
 }
@@ -60,7 +62,7 @@ void PrintBoard()
     printf("\n---|---|---");
     printf("\n %c | %c | %c ", board[1][0], board[1][1], board[1][2]);
     printf("\n---|---|---");
-    printf("\n %c | %c | %c ", board[2][0], board[2][1], board[2][2]);
+    printf("\n %c | %c | %c\n ", board[2][0], board[2][1], board[2][2]);
 }
 int CheckFreeSpace()
 {
@@ -106,14 +108,30 @@ void ComputerMove()
 {
     //create a seed
     srand(time(0));
-    
+    int x;
+    int y;
+    if(CheckFreeSpace > 0)
+    {
+        do
+        {
+          x = rand() % 3;
+          y = rand() % 3;
+        } while (board[x][y] != ' ');
+
+        board[x][y] = COMPUTER;  
+    }
+    else
+    {
+        PrintWinner(' ');
+    }
+
 }
 char CheckWinner()
 {
     //check rows
     for(int i = 0; i < 3; i++)
     {
-        if(board[i][0] = board[i][1] && board[i][0] = board[i][2])
+        if(board[i][0] == board[i][1] && board[i][0] == board[i][2])
         {
             return board[i][0];
         }
@@ -121,18 +139,18 @@ char CheckWinner()
     //check columns
     for(int i = 0; i < 3; i++)
     {
-        if(board[0][i] = board[1][i] && board[0][i] = board[2][i])
+        if(board[0][i] == board[1][i] && board[0][i] == board[2][i])
         {
             return board[0][i];
         }
     }
     //check diagonal 1
-    if(board[0][0] = board[1][1] && board[0][0] = board[2][2])
+    if(board[0][0] == board[1][1] && board[0][0] == board[2][2])
         {
             return board[0][0];
         }
     //check diagonal 2
-    if(board[0][2] = board[1][1] && board[0][2] = board[2][0])
+    if(board[0][2] == board[1][1] && board[0][2] == board[2][0])
         {
             return board[0][2];
         }
@@ -140,6 +158,18 @@ char CheckWinner()
     return ' '; 
 
 }
-void PrintWinner(char)
+void PrintWinner(char winner)
 {
+    if(winner == PLAYER)
+    {  
+        printf("\nYou WIN!!!\n");
+    }
+    else if(winner == COMPUTER)
+    {
+        printf("\nYou LOSE!!!\n");
+    }
+    else
+    {
+        printf("\nTIE!!!\n");
+    }
 }
