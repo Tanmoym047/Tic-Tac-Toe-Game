@@ -26,6 +26,8 @@ int main()
     while(winner == ' ' && CheckFreeSpace() != 0)
     {
         PrintBoard();
+
+        PlayerMove();
     }
     
 
@@ -71,6 +73,7 @@ int CheckFreeSpace()
 }
 void PlayerMove()
 {
+    
 
 }
 void ComputerMove()
