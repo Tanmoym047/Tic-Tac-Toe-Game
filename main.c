@@ -7,7 +7,6 @@ char board[3][3];
 const char PLAYER = 'X';
 const char COMPUTER = 'O';
 
-
 void ResetBoard();
 void PrintBoard();
 int CheckFreeSpace();
@@ -16,35 +15,31 @@ void ComputerMove();
 char CheckWinner();
 void PrintWinner(char);
 
-
 int main()
 {
     char winner = ' ';
 
     ResetBoard();
 
-    while(winner == ' ' && CheckFreeSpace() != 0)
+    while (winner == ' ' && CheckFreeSpace() != 0)
     {
         PrintBoard();
 
         PlayerMove();
     }
-    
-
 
     return 0;
 }
 
 void ResetBoard()
 {
-    for(int i = 0; i < 3; i++)
+    for (int i = 0; i < 3; i++)
     {
-        for(int j = 0; j < 3; j++)
+        for (int j = 0; j < 3; j++)
         {
             board[i][j] = ' ';
         }
     }
-
 }
 void PrintBoard()
 {
@@ -53,39 +48,53 @@ void PrintBoard()
     printf("\n %c | %c | %c ", board[1][0], board[1][1], board[1][2]);
     printf("\n---|---|---");
     printf("\n %c | %c | %c ", board[2][0], board[2][1], board[2][2]);
-    
 }
 int CheckFreeSpace()
 {
     int FreeSpace = 9;
-    for(int i = 0; i < 3; i++)
+    for (int i = 0; i < 3; i++)
     {
-        for(int j = 0; j < 3; j++)
+        for (int j = 0; j < 3; j++)
         {
-            if(board[i][j] != ' ')
+            if (board[i][j] != ' ')
             {
-                FreeSpace --;
+                FreeSpace--;
             }
         }
     }
     return FreeSpace;
-
 }
 void PlayerMove()
 {
-    
+    int x;
+    int y;
+    do
+    {
+        printf("\nEnter Row (1-3): ");
+        scanf("%d", &x);
+        x--;
+        printf("Enter Col (1-3): ");
+        scanf("%d", &y);
+        y--;
+
+        if (board[x][y] != ' ')
+        {
+            printf("Invalid Move");
+        }
+        else
+        {
+            board[x][y] = PLAYER;
+            break;
+        }
+    } while (/* condition */);
 
 }
 void ComputerMove()
 {
-
 }
 char CheckWinner()
 {
-
 }
 void PrintWinner(char)
 {
-
-
 }
